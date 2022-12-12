@@ -14,6 +14,12 @@ pipeline {
                 }
             }
         }
+
+      stage('package'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
    
           stage('Unit Testing'){
             steps{
