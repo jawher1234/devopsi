@@ -1,31 +1,20 @@
 pipeline {
     agent any
     
-    tools { 
-        maven 'Maven 3.6.3'
-    }
-    stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                ''' 
-            }
-        }
 
-        stage ('Build') {
-            steps {
-                echo 'This is a minimal pipeline.'
+    stages {
+        
+       stage('Git Checkout'){
+            
+            steps{
+                
+                script{
+                    
+                    git branch: 'main', url: 'https://github.com/jawher1234/devopsi.git'
+                }
             }
         }
-        
-           stage ('Maven') {
-            steps {
-                sh 'mvn -version'
-            }
-        }
-        
+   
           stage('Unit Testing'){
             steps{
                 sh "mvn test"
@@ -49,18 +38,8 @@ pipeline {
                 sh 'mvn compile -DskipTests'
             }
         }
-                stage("Login to DockerHub") {
-                steps{
 
-                    sh 'docker --version'
-                }
-        }
         
-         stage('Nexus') {
-        steps {
-        sh 'mvn deploy '
-      }
-    }
 
          
     }
