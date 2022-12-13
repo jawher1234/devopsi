@@ -74,11 +74,11 @@ pipeline {
             }
         }
         
-       stage('Nexus') {
-        steps {
-        sh 'mvn deploy '
-      }
-    }
+       stage("Publish to Nexus Repository Manager") {
+            steps {
+                sh  "mvn deploy:deploy-file -DgroupId=tn.esprit -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.20:8081/repository/maven-releases/ -Dfile=target/ExamThourayaS2-0.0.1-SNAPSHOT.jar -DskipTests" 
+            }
+        }
 
 
         stage("Login to DockerHub") {
