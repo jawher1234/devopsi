@@ -40,9 +40,9 @@
 
 	   <distributionManagement>
         <repository>
-            <id>deploymentRepo</id>
+            <id>demo</id>
             <name>admin</name>
-            <url>http://192.168.1.20:8081/repository/maven-releases/</url>
+            <url>http://192.168.1.20:8081/repository/demo</url>
         </repository>
     </distributionManagement>
 	
