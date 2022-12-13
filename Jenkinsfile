@@ -100,8 +100,7 @@ pipeline {
             steps {
                 script{
                   
-               nexusArtifactUploader artifacts: [[artifactId: 'ExamThourayaS2', classifier: '', file: 'ExamThourayaS2-0.0.1-SNAPSHOT.jar', type: 'jar']], credentialsId: 'jenkins', groupId: 'tn.esprit', nexusUrl: '192.168.1.20:8081', nexusVersion: 'nexus2', protocol: 'http', repository: 'demo', version: '0.0.1-SNAPSHOT'
-                
+                   nexusArtifactUploader artifacts: [[artifactId: 'ExamThourayaS2', classifier: '', file: 'ExamThourayaS2-0.0.1-SNAPSHOT.jar', type: 'jar']], credentialsId: 'jenkins', groupId: 'tn.esprit', nexusUrl: '192.168.1.20:8081', nexusVersion: 'nexus2', protocol: 'http', repository: '/repository/demo/', version: '0.0.1-SNAPSHOT'                
                 
                 } 
             }
