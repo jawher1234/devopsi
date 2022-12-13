@@ -99,7 +99,7 @@ pipeline {
 
            stage('nexus') {
             steps {
-                 sh "mvn deploy"
+                 sh 'mvn deploy'
 
             }
         }   
