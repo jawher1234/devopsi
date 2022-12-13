@@ -1,8 +1,20 @@
 pipeline {
     agent any
+     
+        tools { 
+        maven 'Maven 3.6.3'
+             }
     
-
+    
     stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
         
        stage('Git Checkout'){
             
@@ -15,21 +27,28 @@ pipeline {
             }
         }
 
-      stage('package'){
+      stage('maven'){
             steps{
-                sh "mvn clean package"
+                sh "mvn -version"
+            }
+        }
+        
+         stage('Build') {
+            steps {
+                    sh "mvn install"
+                    //sh "mvn compile"
             }
         }
    
           stage('Unit Testing'){
             steps{
-                sh "mvn test"
+                sh "docker --version"
             }
         }
         stage ('SRC Analysis Testing SonarQube'){
             steps {
 
-           sh "mvn sonar:sonar -Dsonar.login=admin  -Dsonar.host.url=http://192.168.1.15:9000/ -Dsonar.password=jawher"
+           sh "mvn sonar:sonar -Dsonar.login=admin  -Dsonar.host.url=http://192.168.1.20:9000/ -Dsonar.password=jawher"
             }
 
          }
