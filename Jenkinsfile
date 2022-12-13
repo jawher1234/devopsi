@@ -96,9 +96,10 @@ pipeline {
             }
         }   
         
-                stage('clean package') {
+
+           stage('nexus') {
             steps {
-                 sh "mvn clean package"
+                 sh "mvn deploy"
 
             }
         }   
