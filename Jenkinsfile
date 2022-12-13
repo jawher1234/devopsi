@@ -64,6 +64,41 @@ pipeline {
             }
         }
 
+
+
+               stage('Docker Build') {
+            steps {
+               
+      	           sh "docker build -t jawher123456/project ."
+                
+            }
+        }
+
+             stage('Nexus') {
+        steps {
+        sh 'mvn deploy '
+      }
+    }
+        stage("Login to DockerHub") {
+                steps{
+
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u jawher123456 -p jawherzr271997'
+                }
+        }
+        stage("Deploy Image to DockerHub") {
+                steps{
+                    sh 'docker push jawher123456/project'
+                }
+        }
+
+        
+        stage('Start container') {
+            steps {
+                 sh "docker-compose up -d"
+
+            }
+        }   
+
         
 
          
