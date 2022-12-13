@@ -98,7 +98,14 @@ pipeline {
 
                stage("Publish to Nexus Repository Manager") {
             steps {
-                sh  "mvn deploy" 
+                script{
+                  nexusArtifactUploader artifacts:
+                      [[artifactId: 'ExamThourayaS2', classifier: '', file: 'target/ExamThourayaS2-1.0.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'tn.esprit', nexusUrl: '192.168.1.20:8081', nexusVersion: 'nexus2', protocol: 'http', repository: 'demo', version: '0.0.1-SNAPSHOT'
+                
+                
+                
+                
+                } 
             }
         }
 
