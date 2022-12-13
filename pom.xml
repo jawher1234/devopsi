@@ -42,7 +42,7 @@
         <repository>
             <id>demo</id>
             <name>admin</name>
-            <url>http://192.168.1.20:8081/repository/demo</url>
+            <url>http://192.168.1.20:8081/demo</url>
         </repository>
     </distributionManagement>
 	
