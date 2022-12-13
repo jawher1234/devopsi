@@ -97,13 +97,11 @@ pipeline {
         }   
         
 
-           stage('nexus') {
+   stage("Publish to Nexus Repository Manager") {
             steps {
-                 sh 'mvn deploy'
-
+                sh  "mvn deploy:deploy-file -DgroupId=tn.esprit -DartifactId=ExamThourayaS2 -Dversion=0.1.0-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=demo -Durl=http://192.168.1.170:8081/repository/demo/ -Dfile=target/ExamThourayaS2-0.1.0.jar -DskipTests" 
             }
-        }   
-
+        }
 
 
          
