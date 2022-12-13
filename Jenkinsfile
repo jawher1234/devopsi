@@ -73,6 +73,12 @@ pipeline {
                 
             }
         }
+        
+       stage('Nexus') {
+        steps {
+        sh 'mvn deploy '
+      }
+    }
 
 
         stage("Login to DockerHub") {
