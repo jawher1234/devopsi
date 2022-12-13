@@ -95,16 +95,17 @@ pipeline {
 
             }
         }   
+        
+                stage('clean package') {
+            steps {
+                 sh "mvn clean package"
+
+            }
+        }   
 
                stage("Publish to Nexus Repository Manager") {
                    
-                     steps {
-                
-                    
-                             sh "mvn clean package"
-         
-                      }     
-                   
+                     
                    
             steps {
                 script{
