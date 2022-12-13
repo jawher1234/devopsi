@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-      stage('maven'){
+      stage('Unit Testing'){
             steps{
                sh "mvn test"
             }
@@ -40,11 +40,7 @@ pipeline {
             }
         }
    
-          stage('Unit Testing'){
-            steps{
-                sh "docker --version"
-            }
-        }
+
         stage ('SRC Analysis Testing SonarQube'){
             steps {
 
